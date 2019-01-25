@@ -1,4 +1,4 @@
-const PubSub = require('../helpers/pub_sub.js');
+import PubSub from '../helpers/pub_sub.js';
 
 // const InstrumentFamilyView = function (container) {
 //   this.container = container;
@@ -19,16 +19,18 @@ class InstrumentFamilyView {
   render(family){
     this.container.innerHTML = '';
 
-    const familyName = this.createElement('h2', family.name);
+    const {name, description, instruments} = family;
+
+    const familyName = this.createElement('h2', name);
     this.container.appendChild(familyName);
 
-    const familyDescription = this.createElement('p', family.description);
+    const familyDescription = this.createElement('p', description);
     this.container.appendChild(familyDescription);
 
     const instrumentListTitle = this.createElement('h3', 'Instruments include:');
     this.container.appendChild(instrumentListTitle);
 
-    const instrumentList = this.createInstrumentList(family.instruments);
+    const instrumentList = this.createInstrumentList(instruments);
     this.container.appendChild(instrumentList);
   }
 
@@ -91,4 +93,4 @@ class InstrumentFamilyView {
 //   return list;
 // };
 
-module.exports = InstrumentFamilyView;
+export default InstrumentFamilyView;
